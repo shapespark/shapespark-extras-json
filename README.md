@@ -1,0 +1,77 @@
+# Introduction.
+
+This document describes a JSON file format that can be used together
+with the main 3D file (FBX, COLLADA, OBJ, GLTF) to import additional
+properties to Shapespark.
+
+Shapespark can import basic material settings from the standard 3D
+formats (base color, base color texture, opacity). For FBX and COLLADA
+Shapespark can also import light positions and types, but not light
+strength, size, color and angle. Other material properties (roughness,
+metallic, bump, emissive) need to be set in the Shapespark
+editor.
+
+The JSON format allows to import these additional properties. The
+format is intended for writing exporters.
+
+# JSON file location.
+
+When importing a 3D file Shapespark looks for a JSON file in the same
+directory, with the same name, but a `.json` extension. For example,
+if `Documents\InteriorA\InteriorA.fbx` is imported, the JSON file
+should be in `Documents\InteriorA\InteriorA.json`. If such file is
+present, it is used to import additional properties.
+
+# JSON file format.
+
+[Example file](./example/cubes.json)
+
+Entries:
+## `materials` list
+
+Adds additional properties to the imported materials, not all materials
+need to be included on the list. Each entry has the following
+properties:
+
++ `name`: required, must match material name from the main 3D file.
++ `roughness`: optional, in `[0-1]` range, defaults to `1`.
++ `rougnessTexture`: optional, if set `roughness` property
+is ignored.
++ `metallic`: optional, in `[0-1]` range, defaults to `1`.
++ `metallicTexture`: optional, if set `metallic` property is ignored.
++ `bumpTexture`: optional.
++ `bumpScale`: optional, in `[0-1]` range, used when `bumpTexture`
+  property is set to scale it.
++ `emissionStrength`: optional, in `[0-1000]` range, if set the
+material emits light.
+
+[More detailed description of these
+properties](https://www.shapespark.com/docs#materials-tab).
+
+## `camera` object
+
+Sets the initial camera placement:
+
++ `position`: required, `[x, y, z]` coordinates, `z` axis is up.
++ `rotation`: required, `[yaw, pitch]` of the camera in degrees.
++ `fov`: optional, field of view in degrees.
+
+## `lights` list
+
+
+Each entry has the following properties:
+
++ `name`: required, any unique string.
++ `type`: required, `sun`, `spot` or `point`.
++ `strength`: required, [0-1000]
++ `color`: required, three RGB values in [0-1] range, in linear color space.
++ `angle`: required for `spot` lights, [0-360].
++ `instances`: a list of light instances that use the settings.
+
+Each instance has the following properties:
+
+ + `position`: required for `spot` and `point` lights, `[x, y, z]` coordinates.
+ + `rotation`: required for `spot` and `sun` lights, `[yaw, pitch]`.
+
+[More detailed description of light
+properties](https://www.shapespark.com/docs#lights-tab)

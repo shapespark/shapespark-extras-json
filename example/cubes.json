@@ -1,0 +1,123 @@
+{
+  "materials" : [
+    {
+      "name" : "Material.001",
+      "roughness" : 0.7,
+      "metallic": 1.0,
+      "emissionStrength": 3.0
+    },
+    {
+      "name" : "Material.002",
+      "roughnessTexture": {
+        "fileName": "Steel_Brushed_Stainless.jpg"
+      },
+      "metallicTexture": {
+        "fileName": "Steel_Brushed_Stainless.jpg"
+      },
+      "bumpTexture": {
+        "fileName": "Steel_Brushed_Stainless.jpg"
+      },
+      "bumpScale": 0.001
+    }
+  ],
+
+  "camera": {
+    "rotation" : [
+      45,
+      -45
+    ],
+    "position" : [
+      0.1,
+      -0.1,
+      0.1
+    ],
+    "fov": 66
+  },
+
+  "lights" : [
+    {
+      "type" : "point",
+      "name" : "point0",
+      "size" : 0.1,
+      "strength" : 25,
+      "color" : [
+        0.730460740090354,
+        0.135633329655206,
+        0.00604883302285705
+      ],
+      "instances" : [
+        {
+          "rotation" : [
+            0,
+            -90
+          ],
+          "position" : [
+            1.954,
+            1.468,
+            2.535
+          ]
+        }
+      ]
+    },
+    {
+      "type" : "spot",
+      "name" : "spot1",
+      "angle" : 140,
+      "size" : 0.1,
+      "strength" : 25,
+      "color" : [
+        0.0382043715953465,
+        0.168269400189691,
+        0.012983032342173
+      ],
+      "instances" : [
+        {
+          "rotation" : [
+            58,
+            -105
+          ],
+          "position" : [
+            -1.574,
+            -1.266,
+            2.98
+          ]
+        },
+        {
+          "rotation" : [
+            46,
+            -69
+          ],
+          "position" : [
+            1.173,
+            -1.904,
+            2.98
+          ]
+        }
+      ]
+    },
+    {
+      "type" : "sun",
+      "name" : "sun1",
+      "strength" : 8,
+      "size" : 0.02,
+      "color" : [
+        1,
+        0.8,
+        0.638
+      ],
+      "instances" : [
+        {
+          "rotation" : [
+            12,
+            -25
+          ],
+          "position" : [
+            1.637,
+            -4.134,
+            2.98
+          ]
+        }
+      ]
+    }
+  ]
+}
