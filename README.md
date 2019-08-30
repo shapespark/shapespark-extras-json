@@ -33,39 +33,94 @@ Adds additional properties to the imported materials, not all materials
 need to be included on the list. Each entry has the following
 properties:
 
-+ `name`: required, must match material name from the main 3D file.
-+ `roughness`: optional, in `[0-1]` range, defaults to `1`.
++ `name`: required, must match material name from the input file.
++ `roughness`: optional, in `[0,1]` range, defaults to `1`.
 + `rougnessTexture`: optional, if set `roughness` property
 is ignored.
-+ `metallic`: optional, in `[0-1]` range, defaults to `1`.
++ `metallic`: optional, in `[0,1]` range, defaults to `1`.
 + `metallicTexture`: optional, if set `metallic` property is ignored.
 + `bumpTexture`: optional.
-+ `bumpScale`: optional, in `[0-1]` range, used when `bumpTexture`
++ `bumpScale`: optional, in `[0,1]` range, used when `bumpTexture`
   property is set to scale it.
-+ `emissionStrength`: optional, in `[0-1000]` range, if set the
++ `emissionStrength`: optional, in `[0,1000]` range, if set the
 material emits light.
++ `doubleSided`: optional, defaults to `false`, use sparingly
+[see the limitations of double sided.
+materials](https://www.shapespark.com/docs#materials-tab)
 
-[More detailed description of these
+
+The following material properties are read from the input file, but
+can be overwritten by `extras.json`:
+
++ `baseColor`: optional, three RGB values in `[0,1]` range, in linear
+color space.
++ `baseColorTexture`: optional, if set `baseColor` is ignored. Can be
+set to `null` to reset the base color texture setting from the input file.
++ `opacity`: optional, in `[0, 1]` range.
+
+[More detailed description of the material
 properties](https://www.shapespark.com/docs#materials-tab).
 
-## `camera` object
+### `views` list
 
-Sets the initial camera placement:
+An optional list of views that allow the user to teleport to points of
+interest in the scene. If the `views` list is present, the first view
+from the list is used as the initial camera placement after the scene
+is loaded.
 
-+ `position`: required, `[x, y, z]` coordinates, `z` axis is up.
+Each entry has the following properties:
+
++ `name`: optional, a user visible name of the view, defaults to 'viewX'.
++ `position`: required, `[x, y, z]` coordinates of the camera, `z` axis is
+  up.
 + `rotation`: required, `[yaw, pitch]` of the camera in degrees.
++ `fov`: optional, field of view in degrees. View can alter the global
+  field of view configured in the `camera` object. The altered field of
+  view is used until the user teleports to another location in the
+  scene.
+
+If the list of views has more than one entry, the scene has an
+automatic tour button that automatically teleports the user between
+the views.
+
+### `autoTour` object
+
+`autoTour` is an optional object that configures the automatic tour
+through all the scene views:
+
++ `disabled`: optional, disables the automatic tour feature, defaults to
+`false`.
++ `startOnLoad`: optional, if `true` the automatic tour is started when
+the scene is loaded, defaults to `false`.
+
+### `camera` object
+
+Sets the optional camera settings and initial camera placement. The
+initial camera placement is used only if the `views` list is empty:
+
 + `fov`: optional, field of view in degrees.
++ `exposure`: optional, camera exposure in `[-3,3]` range, defaults to `0`.
++ `position`: optional, `[x, y, z]` coordinates, `z` axis is up.
++ `rotation`: optional, `[yaw, pitch]` of the camera in degrees.
 
-## `lights` list
+### `lights` list
 
+An entry of the `lights` list either adds a new light to the scene or
+sets additional properties for an imported light. If a light with the
+given name exists in the input file, all the entry properties except
+`name` and `instances` are copied to the existing light. Otherwise,
+the entry is treated as a new light.
 
 Each entry has the following properties:
 
 + `name`: required, any unique string.
-+ `type`: required, `sun`, `spot` or `point`.
-+ `strength`: required, [0-1000]
-+ `color`: required, three RGB values in [0-1] range, in linear color space.
-+ `angle`: required for `spot` lights, [0-360].
++ `type`: required for new light, `"sun"`, `"spot"` or `"point"`.
++ `strength`: required, `[0,1000]`
++ `angle`: required for `spot` lights, `[0,360]`.
++ `photometricProfile`: optional, only for `point` and `spot` lights, path to
+IES light profile file.
++ `size`: required, `[0.01,0.5]`
++ `color`: required, three RGB values in `[0,1]` range, in linear color space.
 + `instances`: a list of light instances that use the settings.
 
 Each instance has the following properties:
