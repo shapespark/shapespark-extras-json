@@ -119,7 +119,9 @@ Each entry has the following properties:
 + `angle`: required for `spot` lights, `[0,360]`.
 + `photometricProfile`: optional, only for `point` and `spot` lights, path to
 IES light profile file.
-+ `size`: required, `[0.01,0.5]`
++ `width` and `height`: required for `area` lights, both properties in
+  `[0.01,5]` range
++ `size`: required for all light types except `area`, `[0.01,0.5]`
 + `color`: required, three RGB values in `[0,1]` range, in linear color space.
 + `instances`: a list of light instances that use the settings.
 
