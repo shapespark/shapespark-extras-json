@@ -114,7 +114,7 @@ the entry is treated as a new light.
 Each entry has the following properties:
 
 + `name`: required, any unique string.
-+ `type`: required for new light, `"sun"`, `"spot"` or `"point"`.
++ `type`: required for new light, `"sun"`, `"spot"`, `"point"` or `"area"`.
 + `strength`: required, `[0,1000]`
 + `angle`: required for `spot` lights, `[0,360]`.
 + `photometricProfile`: optional, only for `point` and `spot` lights, path to
@@ -127,8 +127,9 @@ IES light profile file.
 
 Each instance has the following properties:
 
- + `position`: required for `spot` and `point` lights, `[x, y, z]` coordinates.
- + `rotation`: required for `spot` and `sun` lights, `[yaw, pitch]`.
+ + `position`: required for `spot`, `point` and `area` lights,
+   `[x, y, z]` coordinates.
+ + `rotation`: required for `sun`, `spot` and `area` lights, `[yaw, pitch]`.
 
 [More detailed description of light
 properties](https://www.shapespark.com/docs#lights-tab)
