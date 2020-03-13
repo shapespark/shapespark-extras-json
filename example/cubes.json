@@ -237,34 +237,5 @@
         }
       ]
     }
-  ],
-
-  "panoramas": [
-    {
-      "name": "panorama1",
-      "width": 2048,
-      "height": 1024,
-      "rotation": 90,
-      "position": [
-        0.115,
-        0,
-        0
-      ]
-    },
-    {
-      "name": "panorama2",
-      "width": 4096,
-      "height": 2048,
-      "rotation": -90,
-      "position": [
-        -0.115,
-        0,
-        0
-      ]
-    }
-  ],
-
-  "bake": {
-    "quality": "draft"
-  }
+  ]
 }
