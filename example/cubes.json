@@ -17,33 +17,101 @@
       "bumpTexture": {
         "fileName": "Steel_Brushed_Stainless.jpg"
       },
-      "bumpScale": 0.001
+      "bumpScale": 0.001,
+      "doubleSided": true,
+      "opacity": 0.8,
+      "baseColorTexture": {
+        "fileName": "Carpet_Loop_Pattern.jpg"
+      }
     }
   ],
 
   "camera": {
-    "rotation" : [
-      45,
-      -45
-    ],
-    "position" : [
-      0.1,
-      -0.1,
-      0.1
-    ],
     "fov": 66
+  },
+
+  "sky": {
+    "strength": 6,
+    "color": [0.854, 0.862, 1],
+    "ambientOcclusion": {
+      "factor": 0.05,
+      "distance": 1
+    },
+    "texture": {
+      "fileName": "sky.jpg",
+      "yawRotation": 77
+    }
+  },
+
+  "views": [
+    {
+      "name": "First view",
+      "rotation" : [
+        22.19,
+        -32.28
+      ],
+      "position" : [
+        0.15,
+        -0.38,
+        0.14
+      ]
+    },
+    {
+      "name": "Second view",
+      "rotation" : [
+        -136.8,
+        -28.68
+      ],
+      "position" : [
+        -0.10,
+        0.15,
+        0.05
+      ]
+    },
+    {
+      "name": "Third view",
+      "fov": 45,
+      "rotation" : [
+        -172.44,
+        -35.16
+      ],
+      "position" : [
+        -0.01,
+        0.24,
+        0.08
+      ]
+    },
+    {
+      "name": "Top view",
+      "mode": "top",
+      "distance" : 0.23,
+      "rotation" : [-172.44, -90],
+      "target" : [0, 0, 0]
+    },
+    {
+      "name": "Orbit view",
+      "mode": "orbit",
+      "rotation" : [144.65, -28.89],
+      "target" : [0, 0, 0],
+      "distance": 0.5
+    }
+  ],
+
+  "autoTour": {
+    "disabled": false,
+    "startOnLoad": false
   },
 
   "lights" : [
     {
       "type" : "point",
-      "name" : "point0",
+      "name" : "point1",
       "size" : 0.1,
       "strength" : 25,
       "color" : [
-        0.730460740090354,
-        0.135633329655206,
-        0.00604883302285705
+        0.730,
+        0.136,
+        0.006
       ],
       "instances" : [
         {
@@ -66,9 +134,9 @@
       "size" : 0.1,
       "strength" : 25,
       "color" : [
-        0.0382043715953465,
-        0.168269400189691,
-        0.012983032342173
+        0.038,
+        0.168,
+        0.013
       ],
       "instances" : [
         {
@@ -91,6 +159,56 @@
             1.173,
             -1.904,
             2.98
+          ]
+        }
+      ]
+    },
+    {
+      "type" : "point",
+      "name" : "photometric1",
+      "size" : 0.01,
+      "strength" : 1,
+      "photometricProfile": "ThreeLobeUmbrella.ies",
+      "color" : [
+        0.014,
+        0.068,
+        0.791
+      ],
+      "instances" : [
+        {
+          "rotation" : [
+            12,
+            80
+          ],
+          "position" : [
+            -1.291,
+            -3.179,
+            3.045
+          ]
+        }
+      ]
+    },
+    {
+      "type" : "area",
+      "name" : "area1",
+      "width" : 0.5,
+      "height" : 0.2,
+      "strength" : 25,
+      "color" : [
+        0.753,
+        0.565,
+        0.004
+      ],
+      "instances" : [
+        {
+          "rotation" : [
+            -38,
+            -45
+          ],
+          "position" : [
+            0.192,
+            -1.738,
+            2.834
           ]
         }
       ]
@@ -119,5 +237,34 @@
         }
       ]
     }
-  ]
+  ],
+
+  "panoramas": [
+    {
+      "name": "panorama1",
+      "width": 2048,
+      "height": 1024,
+      "rotation": 90,
+      "position": [
+        0.115,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "panorama2",
+      "width": 4096,
+      "height": 2048,
+      "rotation": -90,
+      "position": [
+        -0.115,
+        0,
+        0
+      ]
+    }
+  ],
+
+  "bake": {
+    "quality": "draft"
+  }
 }
