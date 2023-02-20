@@ -178,23 +178,6 @@ settings. If `sky` is missing, the default sky settings are used, if
 defaults to `6`.
 + `color`: optional, three RGB values in `[0,1]` range, in linear
 color space, defaults to `[0.855,0.863,1]`.
-+ `ambientOcclusion`: optional, an object that configures ambient
-occlusion parameters. If `ambientOcclusion` is missing, default ambient
-occlusion parameters are used, if `ambientOcclusion` is set to null,
-ambient occlusion is disabled.
-+ `texture`: optional, an object that configures the equirectangular
-sky texture that surrounds the scene. The texture is not used for
-baking.
-
-`ambientOcclusion` has the following properties:
-
-+ `factor` optional, a float that specifies how strong is the effect
-of ambient occlusion, defaults to `0.05`. `0` is an equivalent of
-disabled ambient occlusion.
-+ `distance` optional, a float that specific how far to search for
-occluders, greather than `0`, defaults to `1`. For example, a `distance`
-`0.5` means that if there are no occluders within `0.5` meter from
-a given point in 3D space, the ambient occlusion has no effect on this point.
 
 `texture` has the following properties:
 
@@ -202,3 +185,30 @@ a given point in 3D space, the ambient occlusion has no effect on this point.
 stores the sky texture.
 + `yawRotation` optional number in `[0,360]` range that specifies the
 rotation of the sky texture in degrees. Defaults to `0`.
+
+### `ambientLight` object
+
+`ambientLight` is an optional object that configures ambient light parameters.
+If `ambientLight` is missing, default ambient light is used, if `ambientLight` 
+is set to null, ambient light is disabled.
+
+The `ambientLight` object has the following properties:
+
++ `strength` optional, a float that specifies ambient light strength, 
+defaults to `0.05`. 
+
+### `ambientOcclusion` object
+
+`ambientOcclusion` is an optional object that configures ambient
+occlusion parameters. If `ambientOcclusion` is missing, default ambient
+occlusion parameters are used, if `ambientOcclusion` is set to null,
+ambient occlusion is disabled.
+
+The `ambientOcclusion` object has the following properties:
+
++ `intensity` optional, a float that specifies how strong the effect
+  of ambient occlusion is, defaults to `0.5`. 
++ `distance` optional, a float that specific how far to search for
+  occluders, greather than `0`, defaults to `1`. For example, a `distance`
+  `0.5` means that if there are no occluders within `0.5` meter from
+  a given point in 3D space, the ambient occlusion has no effect on this point.
